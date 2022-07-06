@@ -22,8 +22,6 @@ const SignUpForm = () => {
   // destructuring from defaultFormFields object //
   const { displayName, email, password, confirmPassword } = formFields;
 
-  console.log(formFields);
-
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
@@ -40,7 +38,10 @@ const SignUpForm = () => {
         password
       );
 
+      // setCurrentUser(user);
+
       await createUserDocumentFromAuth(user, { displayName });
+      resetFormFields();
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         alert("Cannot create user, email already in use");
